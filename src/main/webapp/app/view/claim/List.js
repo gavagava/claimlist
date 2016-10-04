@@ -109,14 +109,14 @@ Ext.define('Claimlist.view.claim.List' ,{
     loadStore: function () {
     	//сначала руками загружаем все справочники т.к. Ext 4 не умеет нормально работать с простыми массивами
     	//т.к. вроде нет никаких ограничений на поддерживаемые браузеры, воспользуемся промайсами и лямбдами для краткости и будем надеется, что у нас достаточно свежий хром :)
-    	var loadRef = (url, store) => {
+    	var loadRef = function (url, store) {
     		//вернется обещание, резолвящееся после загрузки данных справочника
-    		return new Promise((resolve, reject) => {
+    		return new Promise(function (resolve, reject) {
     			Ext.Ajax.request({
     				url: url,
-    				success: (response) => {
+    				success: function (response) {
     					var arr = JSON.parse(response.responseText);
-    					store.loadData(arr.map(item => ({ name: item })));
+    					store.loadData(arr.map(function (item) { return { name: item }; }));
     					resolve(response);
     				}
     			});
@@ -126,9 +126,9 @@ Ext.define('Claimlist.view.claim.List' ,{
     	Promise.all([loadRef('rest/from', this.fromStore), 
     			loadRef('rest/to', this.toStore), 
     			loadRef('rest/statuses', this.statusStore)])
-    			.then(() => {
+    			.then(function () {
     				this.getStore().load();
-    			});
+    			}.bind(this));
     },
     
     onAddClick: function () {

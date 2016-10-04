@@ -1,3 +1,6 @@
+//полифилим обещания, на случай если браузер их не поддерживает
+ES6Promise.polyfill();
+
 Ext.application({
     requires: ['Ext.container.Viewport'],
     name: 'Claimlist',
