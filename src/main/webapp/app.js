@@ -6,9 +6,7 @@ Ext.application({
     name: 'Claimlist',
 
     appFolder: 'app',
-    models: ['Claim'],
-    stores: ['Claims'],
-    views: ['claim.List'],
+    controllers: ['Claims'],
 
     launch: function() {
         Ext.create('Ext.container.Viewport', {

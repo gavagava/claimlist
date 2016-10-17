@@ -1,7 +1,7 @@
 Ext.define('Claimlist.store.Claims', {
     extend: 'Ext.data.Store',
     model: 'Claimlist.model.Claim',
-    autoLoad: false,
+    autoLoad: true,
     autoSync: true,
     
     proxy: {
